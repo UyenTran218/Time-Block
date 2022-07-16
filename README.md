@@ -2,10 +2,6 @@
 
 ----
 
-## **Inft 2063**
-
-----
-
 ##### Thi Khanh Uyen Tran 
 ##### Jacob Sebastian Holdsworth 
 ##### Ashley Raymond Henson 
