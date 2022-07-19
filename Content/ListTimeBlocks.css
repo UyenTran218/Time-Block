@@ -1,0 +1,248 @@
+﻿/*
+Set up default theme's properties (Light Mode)
+*/
+:root {
+    --primary-color: #3A3545;
+    --secondary-color: black;
+    --font-color: #000033;
+    --bg-color: #f8eae2;
+    --bg-gradient: -webkit-radial-gradient(#575065, #3A3545);
+    --btn-bg-color: transparent;
+    --filter: invert(30%) sepia(110%) saturate(10%) hue-rotate(800deg) brightness(103%) contrast(600%);
+}
+/*
+Set up dark theme's properties
+*/
+[data-theme="dark"] {
+    --primary-color: #001a33;
+    --secondary-color: white;
+    --font-color: white;
+    --bg-color: #001a33;
+    --bg-gradient: -webkit-radial-gradient(#575065, #001a33);
+    --btn-bg-color: white;
+    --filter: invert(30%) sepia(110%) saturate(10%) hue-rotate(800deg) brightness(200%) contrast(600%);
+}
+
+.time-block-list-div {
+    max-width: 400px;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    padding-top: 40px;
+}
+
+.time-block-table-div {
+    width: auto;
+}
+
+.time-block-list-table {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+    .time-block-list-table tr {
+        border: 1px solid #eee;
+        padding: 5px;
+        background: white;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: #442d8e;
+    }
+
+        .time-block-list-table tr:hover.listTableRow {
+            background-color: #eeeeeeb8;
+            color: var(--font-color);
+        }
+
+        .time-block-list-table tr.selected {
+            background: rgb(90 57 100 / 24%);
+            color: var(--font-color);
+        }
+
+        .time-block-list-table tr:hover.selected {
+            background: rgb(71 57 100 / 28%);
+            color: var(--font-color);
+        }
+
+        .time-block-list-table tr.current-time-block {
+            background: rgb(248 170 227 / 21%);
+            color: var(--font-color);
+        }
+
+        .time-block-list-table tr:hover.current-time-block {
+            background: rgb(248 72 142 / 29%);
+            color: var(--font-color);
+        }
+
+.list-control-buttons-div {
+    width: 100px;
+    min-height: 360px;
+    margin: auto;
+    border: thin;
+}
+
+.table-data-length {
+    text-align: right;
+}
+
+.list-buttons {
+    margin: 10px 2px 5px 2px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    filter: var(--filter);
+}
+
+    .list-buttons:hover {
+        background-color: rgba(71, 57, 100, 0.5);
+    }
+
+    .list-buttons:active {
+        background-color: rgba(71, 57, 100, 0.7);
+    }
+
+.scroll-table {
+    height: 400px;
+    width: 400px;
+    overflow: auto;
+    background-color: #ffffff3d;
+}
+
+.blur-change-wrap {
+    min-width: 100px;
+    height: auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.blur-change {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.file-type-selection {
+    display: none;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 1s;
+}
+
+.invisible {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+}
+
+.collapse {
+    visibility: collapse;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+}
+
+.disabled {
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0.4;
+}
+
+.enabled {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.clear {
+    clear: both;
+}
+
+#cover {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba(0,0,0,0.6);
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#popup-div {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -325px;
+    margin-left: -250px;
+    width: 500px;
+    height: 500px;
+    background-color: var(--bg-color);
+}
+
+#listControlButtons {
+    width: inherit;
+    height: inherit;
+}
+
+#listButtonAdd {
+    background-image: url("/Content/Images/Add.svg");
+}
+
+#listButtonRemove {
+    background-image: url("/Content/Images/Remove.svg");
+}
+
+#listButtonTop {
+    background-image: url("/Content/Images/Top.svg");
+}
+
+#listButtonUp {
+    background-image: url("/Content/Images/Up.svg");
+}
+
+#listButtonDown {
+    background-image: url("/Content/Images/Down.svg");
+}
+
+#listButtonBottom {
+    background-image: url("/Content/Images/Bottom.svg");
+}
+
+#importLabel {
+    background-image: url("/Content/Images/Import.svg");
+}
+
+#exportLabel {
+    background-image: url("/Content/Images/Export.svg");
+}
+
+#doneButton {
+    background-image: url("/Content/Images/Accept.svg");
+}
+
+#cancelButton {
+    background-image: url("/Content/Images/Cancel.svg");
+}
+
+#select-all-label {
+    background-image: url("/Content/Images/Select All.svg");
+}
+
+.text-box {
+    font-size: 18px;
+}

@@ -1,0 +1,251 @@
+
+@model TimeBlocks.Models.TimeBlockModels
+@{ ViewBag.Title = "TimeBlocks"; }
+
+<!--Start Pop Up Window-->
+<div id="cover">
+    <div id="popup-div">
+        @Html.Partial("~/Views/TimeBlocks/_CreateNewTimeBlock.cshtml", new TimeBlocks.Models.TimeBlock())
+
+    </div>
+</div>
+<!--End Pop Up Window-->
+<div id="theme-change-toggle">
+    @Html.Partial("~/Views/ThemeChanging/_ThemeChanging.cshtml")
+</div>
+<div class="title-container">
+    <span>Time Blocks</span>
+</div>
+<!--Start Timer Container-->
+<div id="timer-container" class="container">
+    <div class="row"><span id="timeName">HD Squad</span></div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="container-fluid">
+                <div id="main-output">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <svg class="timersvg" width="200" height="200">
+                                <g class="timercircle">
+                                    <circle class="timeelapsed" cx="100" cy="100" r="95" fill="#aeaeae" />
+                                    <path id="timeremaining"
+                                          class="timeremaining"
+                                          stroke-dasharray="597"
+                                          d="
+                        M 5, 100
+                        a 95,95 0 1,1 190,0
+                        a 95,95 0 1,1 -190,0
+                        "></path>
+                                    <text id="time" x="50%" y="50%" text-anchor="middle" font-size="20px" font-family="Arial" dy=".3em">0:00</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Start Control Button Group Container-->
+                <div id="timeBlockControls" class="enabled">
+                    <div class="row">
+                        <button id="next" class="main-buttons" type="button"></button>
+                    </div>
+                    <div class="row">
+                        <button id="start" class="main-buttons" type="button"></button>
+                        <button id="pause" class="main-buttons" type="button"></button>
+                        <button id="stop" class="main-buttons" type="button"></button>
+                    </div>
+                    <div class="row">
+                        <button id="previous" class="main-buttons" type="button"></button>
+                    </div>
+                </div>
+
+                <!--End Control Button Group Container-->
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div id="home-time-block-list">
+                @Html.Partial("~/Views/TimeBlocks/_ListTimeBlocks.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End Timer Container-->
+
+<div id="home-media-player-div">
+    @Html.Partial("~/Views/MediaPlayer/_MediaPlayer.cshtml", new TimeBlocks.Models.TimeBlock())
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.form.js" type="text/javascript"></script>
+    <script src="~/Scripts/ListTimeBlock.js" type="text/javascript"></script>
+    <script src="~/Scripts/MediaPlayer.js" type="text/javascript"></script>
+    <script src="~/Scripts/ThemeSwitch.js" type="text/javascript"></script>
+    <script>
+        var rowCounter = 1;
+        var paused = false;
+        var stopped = false;
+        var autoPlay = false;
+        var fiveMinutes = 0;
+        var timeLeft = 0;
+        var t = null;
+        function startTimer(duration, display) {
+            clearInterval(t);
+            var timer = duration, minutes, seconds;
+            mediaPlayerPlayPause(true);
+            t = setInterval(function () {
+                $('#start').addClass("Disabled");
+                minutes = parseInt(timer / 60, 10)
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+                if (stopped == true) {
+                    document.getElementById('time').innerHTML = "0:00";
+                    stopped = false;
+                    $('#start').addClass("Disabled");
+                    clearInterval(t);
+                    if (autoPlay == true) {
+                        if (table.rows[rowCounter]) {
+                            var x = table.rows.item(rowCounter).cells;
+                            var y = parseInt(x[1].innerHTML);
+                            document.getElementById('timeName').innerHTML = table.rows.item(rowCounter).cells[0].innerHTML;
+                            fiveMinutes = 60 * y;
+                            startTimer(fiveMinutes, display);
+                            rowCounter++;
+
+                        }
+                    }
+                }
+                if (paused == false) {
+
+                    if (--timer < 0) {
+                        $('#start').addClass("Disabled");
+                        clearInterval(t);
+                        if (autoPlay == true) {
+                            if (table.rows[rowCounter]) {
+                                var x = table.rows.item(rowCounter).cells;
+                                var y = parseInt(x[1].innerHTML);
+                                document.getElementById('timeName').innerHTML = table.rows.item(rowCounter).cells[0].innerHTML;
+                                fiveMinutes = 60 * y;
+                                startTimer(fiveMinutes, display);
+                                rowCounter++;
+                            }
+
+                        }
+                    }
+
+                    timeLeft = timer;
+                    circleProgress();
+                } else {
+
+                }
+
+            }, 1000);
+        }
+
+        function circleProgress() {
+            const circleArray = `${(
+                (timeLeft / fiveMinutes) * 597
+            ).toFixed(0)} 597`;
+            document.getElementById('timeremaining').setAttribute("stroke-dasharray", circleArray);
+            return;
+        }
+
+        window.onload = function () {
+            fiveMinutes = 0,
+                display = document.querySelector('#time');
+
+            document.getElementById('pause').addEventListener('click', function () {
+                if (paused == false) {
+                    paused = true;
+                    mediaPlayerPlayPause(false);
+                    $('#start').removeClass("Disabled");
+                }
+
+                else if (paused == true) {
+                    mediaPlayerPlayPause(true);
+                    paused = false;
+                }
+
+            });
+
+            document.getElementById('start').addEventListener('click', function () {
+                if ($('.current-time-block').length == 0) {
+                    return;
+                }
+
+                if (t == null) {
+                    fiveMinutes = CurrentTimeBlock["Length"] - CurrentTimeBlock["TimeElapsed"];
+                    startTimer(fiveMinutes, display);
+                    rowCounter++;
+                } else {
+                    mediaPlayerPlayPause(true);
+                    paused = false
+                }
+            });
+            document.getElementById('stop').addEventListener('click', function () {
+                stopped = true;
+            });
+        };
+
+        $('document').ready(function () {
+
+            $('#next, #previous').click(function () {
+                let currentBlock = $('.current-time-block');
+                if (currentBlock.length == 0) { return; }
+                switch (this.id) {
+                    case 'previous':
+                        if (currentBlock[0].rowIndex == 0) {
+                            return;
+                        }
+                        clearInterval(t);
+                        nextBlock = currentBlock.prev('tr')
+                        break;
+
+                        case 'next':
+                            if (currentBlock[0].rowIndex == $('.time-block-list-table tr').length - 1) {
+                                return;
+                            }
+                            clearInterval(t);
+                            nextBlock = currentBlock.next('tr');
+                            break;
+                    }
+                    selectCurrentTimeBlock(nextBlock);
+                    currentBlock.removeClass('current-time-block');
+                });
+
+                $('#popup-button-accept').click(function () {
+                    $('#newBlockForm').validate();
+                    if ($('#newBlockForm').valid()) {
+                        $('#cover').fadeOut(800);
+                    }
+                })
+                        .tooltip({
+                            title: 'Done',
+                            placement: 'auto bottom',
+                            animation: true,
+                            delay: 300,
+                            trigger: 'hover'
+                        });
+                $('#popup-button-cancel').click(function () {
+                    $('#cover').fadeOut(800);
+                })
+                    .tooltip({
+                        title: 'Cancel',
+                        placement: 'auto bottom',
+                        animation: true,
+                        delay: 300,
+                        trigger: 'hover'
+                    });
+                    
+            });
+
+
+    </script>
+}
+

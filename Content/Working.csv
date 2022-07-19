@@ -1,0 +1,9 @@
+Name,Length,Media File,Play Before Timer Begins,Pause Timer for Media,Play After Timer Ends
+"Morning scrum, after video",1800,"\Content\Presentation.mov",TRUE,FALSE,FALSE
+"Work, with music!",600,"\Content\Incubus-TheWarmth.mp3",FALSE,FALSE,FALSE
+"Work, "quiet" time",1200,"",FALSE,FALSE,FALSE
+"Morning break, with music!",600,"\Content\Incubus-NowhereFast.mp3",FALSE,FALSE,FALSE
+"Project Presentation",180,"\Content\Presentation.mp4",FALSE,FALSE,FALSE
+"Lunch, Relaxing",1800,"",FALSE,FALSE,FALSE
+
+

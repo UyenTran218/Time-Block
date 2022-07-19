@@ -1,0 +1,64 @@
+﻿@model TimeBlocks.Models.TimeBlock
+<link rel="stylesheet" href="~/Content/MediaPlayer.css">
+
+<div class="media-player-main-div">
+    <div>
+        <div id="media-player-video-div" hidden>
+            <div>
+                <div class="video-container">
+                    
+                    <div class="file-type-selection">
+                        <video id="media-player-video" preload="metadata"></video>
+                    </div>
+                    <div class="minimise-div">
+                        <button id="media-player-button-minimise" class="media-buttons" type="button" hidden></button>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+                <div class="duration-control slide-container">
+                    <input id="duration-slider" type="range" min="0" max="100" value="0" class="duration-slider" disabled/>
+                </div>
+            </div>            
+            <div class="media-player-controls-div">
+                <div id="mediaOutputs" class="media-player-controls-cell">
+                    <output id="mediaDurationTimer" class="media-player-outputs"></output>
+                    <output id="mediaFileName" class="media-player-outputs"></output>
+                </div>
+
+                <div>
+                    <div class="media-player-controls-cell">
+                        <div class="blur-change-wrap">
+                            <div id="media-player-play-button-div" class="blur-change center-contents">
+                                <button id="media-player-play-button" class="media-buttons" type="button"></button>
+                            </div>
+                            <div id="media-player-pause-button-div" class="blur-change center-contents" hidden>
+                                <button id="media-player-pause-button" class="media-buttons" type="button"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-player-controls-cell float-right">
+                        <div class="center-contents">
+                            <h4>Volume:</h4>
+                            <div class="volume-control slide-container">
+                                <input id="volume-slider" type="range" min="0" max="1" value="0.5" step="0.01" class="volume-slider" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="noMediaDiv" style="text-align:center;">
+            <h5>No media was selected for this TimeBlock</h5>
+        </div>
+    </div>
+</div>
+
+<script>
+    var CurrentTimeBlock = @Html.Raw(Json.Encode(Model));
+</script>
+
+
+
+
+

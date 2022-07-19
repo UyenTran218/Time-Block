@@ -1,0 +1,74 @@
+﻿@model TimeBlocks.Models.TimeBlockModels
+<link rel="stylesheet" href="~/Content/ListTimeBlocks.css">
+<div class="time-block-list-div">
+    <div class="time-block-table-div">
+        <div class="scroll-table" data-toggle="tooltip">
+            <table class="time-block-list-table">
+                <tbody>
+                    @foreach (var item in Model.Models.Values)
+                    {
+                        <tr class="listTableRow">
+                            <td class="table-data-name">@item.Name</td>
+                            <td class="table-data-length">@TimeSpan.FromSeconds(item.Length)</td>
+                            <td class="table-data-checkbox"><input type="checkbox" class="timeblock-checkbox collapse" /></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "importExportForm" }))
+    {
+        @Html.AntiForgeryToken();
+        @Html.Hidden("checkBoxIdString");
+
+        <div class="list-control-buttons-div enabled">
+            <div id="listControlButtons" class="enabled">
+                <div style="min-height:20px;"></div>
+                <div>
+                    <button id="listButtonAdd" class="list-buttons" type="button"></button>
+                    <button id="listButtonRemove" class="list-buttons" type="button"></button>
+                </div>
+                <div style="min-height:20px;"></div>
+                <div>
+                    <button id="listButtonUp" class="list-buttons" type="button"></button>
+                    <button id="listButtonTop" class="list-buttons" type="button"></button>
+                </div>
+                <div style="min-height:10px;"></div>
+                <div>
+                    <button id="listButtonDown" class="list-buttons" type="button"></button>
+                    <button id="listButtonBottom" class="list-buttons" type="button"></button>
+                </div>
+            </div>
+                <div style="min-height:20px;"></div>
+                <div>
+                    <div class="blur-change-wrap">
+                        <div id="importExportDiv" class="blur-change">
+                            <input type="file"
+                                    id="importButton" name="import"
+                                    style="display:none;"
+                                    accept=".csv,.txt" multiple />
+                            <label for="importButton" id="importLabel" class="list-buttons"></label>
+                            <label for="exportButton" id="exportLabel" class="list-buttons"></label>
+                            <button id="exportButton" name="exportButton" type="button" style="display:none;"></button>
+                        </div>
+
+                        <div id="doneCancelDiv" class="blur-change" hidden>
+                            <label id="doneButton" class="list-buttons"></label>
+                            <label id="cancelButton" class="list-buttons"></label>
+                            <input type="checkbox" name="select-all-chkbox" id="select-all-chkbox" hidden />
+                            <label id="select-all-label" for="select-all-chkbox" class="list-buttons"></label>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+
+    }
+</div>
+
+@section Scripts {
+    <script>
+        let TimeBlockModels = @Html.Raw(Json.Encode(Model));
+    </script>
+    }

@@ -1,0 +1,330 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 80px;
+}
+
+.container.body-content {
+    width: 1700px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+:root {
+    --primary-color: #3A3545;
+    --secondary-color: black;
+    --font-color: #000033;
+    --bg-color: #f8eae2;
+    --bg-gradient: -webkit-radial-gradient(#575065, #3A3545);
+}
+
+[data-theme="dark"] {
+    --primary-color: #001a33;
+    --secondary-color: white;
+    --font-color: white;
+    --bg-color: #001a33;
+    --bg-gradient: -webkit-radial-gradient(#575065, #001a33);
+}
+
+
+h1 {
+    font-size: 18px;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn {
+    line-height: 23px;
+    padding: 5px 30px;
+    border-radius: 55px;
+    border: 0.1px solid;
+    border-color: var (--secondary-color);
+    color: black;
+    outline: none;
+    margin-bottom: 10px;
+    background: white;
+}
+
+.main-buttons:hover, .main-buttons:focus, .main-buttons:active {
+    background-color: #56f48f82;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--font-color);
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.button-group {
+    margin-left: 0;
+    margin-top: 90px;
+}
+
+label.theme-switch {
+    margin-top: 12px;
+    width: 60px;
+}
+
+em {
+    margin-left: 9px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#timer-container {
+    margin: 20px auto 48px auto;
+    text-align: center;
+    width: 900px;
+    min-height: 575px;
+    padding-top: 20px;
+    -webkit-box-shadow: 0px 10px 40px 2px var(--font-color);
+}
+
+#output {
+    font-size: 60px;
+    padding: 5px;
+}
+
+.timer {
+    font-size: 25px;
+    float: left;
+    padding: 0 10px 10px 15px;
+    cursor: pointer;
+}
+
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    float: right;
+    width: fit-content;
+    position: absolute;
+}
+
+.switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+    .switch input {
+        display: none;
+    }
+
+.slider#theme {
+    background-color: #ccc;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    cursor: pointer;
+    transition: .4s;
+    -webkit-transition: .4s;
+}
+
+    .slider#theme:before {
+        position: absolute;
+        background-color: black;
+        bottom: 4px;
+        left: 4px;
+        width: 26px;
+        height: 26px;
+        content: "";
+        transition: .4s;
+    }
+
+input:checked + .slider#theme {
+    background-color: bisque;
+}
+
+input:focus + .slider#theme {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider#theme:before {
+    transform: translateX(26px);
+    background-color: orange;
+}
+
+.slider.round {
+    border-radius: 14px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+#timer-increase, #timer-decrease {
+    margin: 39px;
+}
+
+button.btn.btn-import {
+    margin-top: 60px;
+}
+
+.timeblock-list {
+    text-align: center;
+    height: 494px;
+    margin-top: 21px;
+    padding-top: 24px;
+    width: 440px;
+}
+
+.column {
+    padding-bottom: 20px;
+}
+
+.text-center {
+    display: inline-block;
+    float: none;
+}
+
+#timeName {
+    font-size: 42px;
+    font-family: emoji;
+}
+
+.container {
+    width: 1700px;
+}
+
+
+div#time {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+table#myTable {
+    font-family: arial, sans-serif;
+    width: 420px;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+
+.main-buttons {
+    margin: 5px 5px 5px 5px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    padding: 8%;
+    width: 32px;
+    filter: var(--filter);
+}
+
+#timeName {
+    font-size: 45px;
+    padding: 5px;
+}
+
+#time {
+    font-size: 60px;
+    fill: var(--font-color);
+}
+
+#previous {
+    background-image: url("/Content/Images/Previous.svg");
+}
+
+#next {
+    background-image: url("/Content/Images/Next.svg");
+}
+
+#start {
+    background-image: url("/Content/Images/TPlay.svg");
+}
+
+#pause {
+    background-image: url("/Content/Images/TPause.svg");
+}
+
+#stop {
+    background-image: url("/Content/Images/Stop.svg");
+}
+
+#popup-button-accept {
+    background-image: url("/Content/Images/Accept.svg");
+}
+
+#popup-button-cancel {
+    background-image: url("/Content/Images/Cancel.svg");
+}
+
+#timeName {
+    font-size: 50px;
+}
+
+.timercircle {
+    fill: none;
+    stroke: none;
+}
+
+
+.timeelapsed {
+    stroke-width: 11px;
+    stroke: #97f8b7;
+    fill: #5aee9914;
+}
+
+.timeremaining {
+    stroke: #2268a4b3;
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transition: 1s linear all;
+    transform: rotate(90deg);
+    transform-origin: center;
+}
+
+
+.title-container {
+    font-size: 86px;
+    text-align: center;
+    height: 100px;
+    font-family: 'Adamina', serif;
+}
+
+div#popup-button-div {
+    text-align: center;
+    padding: 72px;
+}
+
+h4 {
+    text-align: center;
+    color: var(--font-color);
+}
+
+select#Mode {
+    padding: 4px;
+    color: black;
+}
+svg.timersvg {
+    margin-top: 40px;
+}

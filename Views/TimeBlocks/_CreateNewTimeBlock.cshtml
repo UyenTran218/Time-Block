@@ -1,0 +1,55 @@
+﻿@model TimeBlocks.Models.TimeBlock
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "newBlockForm" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Time Block</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Length, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MediaFile, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-7">
+            <input id="file-select" type="file"/>
+            @Html.EditorFor(model => model.MediaFile, new { htmlAttributes = new { @class = "form-control", style="display: none;"} })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mode, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-7">
+            <div class="">
+                @Html.DropDownListFor(model => model.Mode,
+                    new SelectList(Enum.GetValues(typeof(TimeBlocks.Models.MediaPlayerMode))),
+                    "Select Playback Mode:")
+
+            </div>
+        </div>
+    </div>
+
+    <div id="popup-button-div">
+        <button id="popup-button-accept" class="main-buttons" type="submit"></button>
+        <button id="popup-button-cancel" class="main-buttons" type="button"></button>
+    </div>
+
+</div>
+}
+
